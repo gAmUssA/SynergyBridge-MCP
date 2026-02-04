@@ -12,8 +12,7 @@
 # ==============================================================================
 FROM ghcr.io/graalvm/graalvm-community:21 AS build
 
-# Install native-image and required tools
-RUN gu install native-image
+# native-image is included in graalvm-community:21, no need to install
 
 WORKDIR /app
 
