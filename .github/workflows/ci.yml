@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21 (IBM Semeru)
+        uses: actions/setup-java@v4
+        with:
+          distribution: semeru
+          java-version: '21'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Build Docker image
+        run: docker build -t synergybridge-mcp:ci .
+
+      - name: Start container
+        run: |
+          docker run -d --name synergybridge -p 8080:8080 synergybridge-mcp:ci
+          # Wait for the server to be ready
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:8080/ > /dev/null 2>&1; then
+              echo "Server is ready"
+              break
+            fi
+            echo "Waiting for server... ($i/30)"
+            sleep 2
+          done
+
+      - name: "Smoke test: GET /"
+        run: |
+          response=$(curl -sf http://localhost:8080/)
+          echo "$response" | jq .
+          echo "$response" | jq -e '.name' > /dev/null
+          echo "$response" | jq -e '.javaVersion' > /dev/null
+
+      - name: "Smoke test: POST /mcp (initialize)"
+        run: |
+          response=$(curl -sf -X POST http://localhost:8080/mcp \
+            -H 'Content-Type: application/json' \
+            -d '{
+              "jsonrpc": "2.0",
+              "id": 1,
+              "method": "initialize",
+              "params": {
+                "protocolVersion": "2025-03-26",
+                "capabilities": {},
+                "clientInfo": { "name": "ci-smoke-test", "version": "1.0.0" }
+              }
+            }')
+          echo "$response" | jq .
+          echo "$response" | jq -e '.result.protocolVersion' > /dev/null
+
+      - name: Tear down container
+        if: always()
+        run: |
+          docker logs synergybridge || true
+          docker rm -f synergybridge || true

@@ -5,7 +5,8 @@
 ![SOA Ready](https://img.shields.io/badge/SOA-Ready-orange)
 ![XML First](https://img.shields.io/badge/XML-First-red)
 ![Java 21](https://img.shields.io/badge/Java-21-brightgreen)
-![Quarkus 3.20](https://img.shields.io/badge/Quarkus-3.20-blue)
+![Quarkus 3.31.2](https://img.shields.io/badge/Quarkus-3.31.2-blue)
+![IBM Semeru](https://img.shields.io/badge/IBM_Semeru-OpenJ9-blueviolet)
 
 > **Bridging the gap between your legacy investments and tomorrow's legacy investments.**
 
@@ -36,9 +37,9 @@ SynergyBridge MCP reintroduces the enterprise experience to a new generation.
 
 ### Prerequisites
 
-- **Java 21** or higher (IBM J9 recommended for authentic enterprise experience)
+- **Java 21** or higher (IBM Semeru / Eclipse OpenJ9 is the default Docker runtime)
 - **Gradle** 8.x (included via wrapper)
-- Docker (optional, for containerized deployment)
+- Docker (optional, for containerized deployment — uses IBM Semeru base image)
 
 ### Building from Source
 
@@ -65,7 +66,6 @@ cd SynergyBridge-MCP
 The server will be available at:
 - **HTTP**: `http://localhost:8080/mcp`
 - **SSE**: `http://localhost:8080/mcp/sse`
-- **HTTPS**: `https://localhost:8443/mcp` (self-signed certificate)
 
 #### Production Mode
 
@@ -90,7 +90,7 @@ docker buildx build --platform linux/amd64,linux/arm64 \
 #### Running with Docker
 
 ```bash
-docker run -p 8080:8080 -p 8443:8443 synergybridge-mcp:latest
+docker run -p 8080:8080 synergybridge-mcp:latest
 ```
 
 #### Docker Compose
@@ -161,7 +161,6 @@ For any MCP-compatible client, configure:
 |----------|-------|
 | **Server URL** | `http://localhost:8080/mcp` |
 | **SSE URL** | `http://localhost:8080/mcp/sse` |
-| **HTTPS URL** | `https://localhost:8443/mcp` |
 | **Transport** | HTTP or SSE |
 
 ---
@@ -374,8 +373,8 @@ Call a PeopleSoft Component Interface.
 
 Have you tried turning it off and on again? If that doesn't work:
 
-1. **Check Java version**: Must be Java 21 or higher. IBM J9 preferred.
-2. **Port conflicts**: Ensure ports 8080 and 8443 are available
+1. **Check Java version**: Must be Java 21 or higher. IBM Semeru / OpenJ9 preferred.
+2. **Port conflicts**: Ensure port 8080 is available
 3. **File a Remedy ticket**: Average response time is 3-5 business days
 
 ### Tools are taking too long
@@ -385,14 +384,6 @@ This is by design. Enterprise systems require patience. If you need faster respo
 ### Getting "License server unreachable" errors
 
 This is also by design. Our tools randomly inject enterprise-grade errors at a 10% rate to provide an authentic experience. Consider it a feature.
-
-### SSL certificate errors
-
-The server uses a self-signed certificate. Either:
-1. Add an exception in your browser
-2. Import the certificate to your trust store
-3. Use the HTTP endpoint instead
-4. Blame IT Security
 
 ### Nothing works and I'm questioning my career choices
 

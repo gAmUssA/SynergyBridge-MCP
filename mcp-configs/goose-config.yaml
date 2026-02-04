@@ -17,9 +17,6 @@ mcp_servers:
     # Optional: Enable SSE transport instead
     # url: "http://localhost:8080/mcp/sse"
     # transport: sse
-    
-    # Optional: Use HTTPS (requires accepting self-signed certificate)
-    # url: "https://localhost:8443/mcp"
 
 # Alternative configuration using environment variables:
 # export GOOSE_MCP_SERVERS__SYNERGYBRIDGE__URL="http://localhost:8080/mcp"

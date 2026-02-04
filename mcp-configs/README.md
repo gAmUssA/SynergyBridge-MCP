@@ -19,7 +19,6 @@ SynergyBridge MCP provides the following endpoints:
 |----------|-----|-------------|
 | HTTP (Streamable) | `http://localhost:8080/mcp` | Primary MCP endpoint |
 | HTTP/SSE | `http://localhost:8080/mcp/sse` | Server-Sent Events endpoint |
-| HTTPS | `https://localhost:8443/mcp` | Secure endpoint (self-signed cert) |
 
 ## Quick Start
 
@@ -36,7 +35,6 @@ SynergyBridge MCP provides the following endpoints:
 
 ## Notes
 
-- The server uses port 8080 by default (HTTPS on 8443)
-- SSL certificate is self-signed - you may need to accept certificate warnings
+- The server uses port 8080 by default
 - Tools have intentional delays (2-12 seconds) for authenticity
 - 10% of requests will receive enterprise-grade error messages (this is a feature!)

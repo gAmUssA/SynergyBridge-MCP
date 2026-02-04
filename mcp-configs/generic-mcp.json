@@ -20,11 +20,6 @@
         "url": "http://localhost:8080/mcp/sse",
         "transport": "sse",
         "description": "Server-Sent Events endpoint"
-      },
-      "https": {
-        "url": "https://localhost:8443/mcp",
-        "transport": "https",
-        "description": "Secure HTTPS endpoint (self-signed certificate)"
       }
     },
     
