@@ -1,0 +1,10 @@
+{
+  "CUST-ID": "12345",
+  "CUST-NM": "JOHN DOE",
+  "CUST-ADDR-LN-1": "123 MAIN ST",
+  "CUST-ADDR-LN-2": "",
+  "FILLER-01": "???",
+  "FILLER-02": "???",
+  "FILLER-03": "???",
+  "COMP-3-FIELD": "SEE_MAINFRAME_DOCUMENTATION"
+}

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/config.json",
+  "_comment": "Generic MCP Configuration for SynergyBridge MCP",
+  "_description": "Bridging the gap between your legacy investments and tomorrow's legacy investments",
+  "_vendor": "SynergyBridge Enterprise Solutions Division",
+  "_version": "9.0.0.1-SP3-HF42-FINAL-FINAL2-REALLYFINAL",
+  "_certification": "Y2K Compliant, ISO 9001, CMMI Level 3",
+  
+  "server": {
+    "name": "SynergyBridge MCP",
+    "description": "Enterprise Legacy System Integration Suite providing authentic legacy system experiences",
+    
+    "endpoints": {
+      "primary": {
+        "url": "http://localhost:8080/mcp",
+        "transport": "http",
+        "description": "Primary Streamable HTTP endpoint"
+      },
+      "sse": {
+        "url": "http://localhost:8080/mcp/sse",
+        "transport": "sse",
+        "description": "Server-Sent Events endpoint"
+      },
+      "https": {
+        "url": "https://localhost:8443/mcp",
+        "transport": "https",
+        "description": "Secure HTTPS endpoint (self-signed certificate)"
+      }
+    },
+    
+    "capabilities": {
+      "tools": true,
+      "resources": false,
+      "prompts": false
+    },
+    
+    "tools": [
+      {
+        "name": "websphere-deploy-ejb",
+        "description": "Deploy an Enterprise JavaBean to WebSphere Application Server",
+        "responseTime": "8 seconds"
+      },
+      {
+        "name": "cobol-copybook-transform",
+        "description": "Transform COBOL copybook definitions to JSON schema",
+        "responseTime": "3 seconds"
+      },
+      {
+        "name": "mainframe-jcl-submit",
+        "description": "Submit JCL to the mainframe job scheduler",
+        "responseTime": "5 seconds"
+      },
+      {
+        "name": "soa-governance-validate",
+        "description": "Validate a service against SOA governance policies",
+        "responseTime": "4 seconds"
+      },
+      {
+        "name": "enterprise-service-bus-route",
+        "description": "Configure message routing through the Enterprise Service Bus",
+        "responseTime": "6 seconds"
+      },
+      {
+        "name": "ldap-corporate-directory-sync",
+        "description": "Synchronize with the corporate LDAP directory",
+        "responseTime": "7 seconds"
+      },
+      {
+        "name": "tuxedo-transaction-begin",
+        "description": "Begin a Tuxedo distributed transaction",
+        "responseTime": "4 seconds"
+      },
+      {
+        "name": "tibco-rendezvous-publish",
+        "description": "Publish messages via TIBCO Rendezvous",
+        "responseTime": "2 seconds"
+      },
+      {
+        "name": "crystal-reports-generate",
+        "description": "Generate Crystal Reports with enterprise formatting",
+        "responseTime": "12 seconds"
+      },
+      {
+        "name": "siebel-crm-customer-lookup",
+        "description": "Look up customer records in Siebel CRM",
+        "responseTime": "9 seconds"
+      },
+      {
+        "name": "informatica-etl-workflow-start",
+        "description": "Start an Informatica PowerCenter ETL workflow",
+        "responseTime": "6 seconds"
+      },
+      {
+        "name": "peoplesoft-component-interface-call",
+        "description": "Call a PeopleSoft Component Interface",
+        "responseTime": "7 seconds"
+      }
+    ]
+  },
+  
+  "metadata": {
+    "supportContact": "Please open a Remedy ticket (average response time: 3-5 business days)",
+    "documentation": "Available on SharePoint (2007). Ask Brenda for the password.",
+    "uptime": "99.9% (excluding maintenance windows, which occur daily from 6 AM to 11 PM)",
+    "errorInjectionRate": "10% (this is a feature, not a bug)"
+  }
+}

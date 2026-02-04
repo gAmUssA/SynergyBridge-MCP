@@ -1,0 +1,147 @@
+Warning: Consider migrating to microservices (issued since 2015)
+Warning: SOAP 1.1 detected. SOAP 1.2 recommended since 2007
+Warning: Namespace prefix 'ns1' is not descriptive
+Warning: Service name does not follow naming convention CORP-[DIVISION]-[APP]-[VER]-Service
+Warning: WSDL contains inline schema definitions. Externalize recommended
+Warning: Operation name 'doStuff' does not follow verb-noun naming convention
+Warning: Missing WS-Security policy attachment
+Warning: WS-Addressing headers not present
+Warning: MTOM optimization not enabled for binary attachments
+Warning: Service endpoint URL contains 'localhost'
+Warning: Missing service level agreement (SLA) metadata
+Warning: Documentation element is empty or missing
+Warning: Schema import uses relative URL
+Warning: Mixed content model detected in complex type
+Warning: xs:any element allows unrestricted content
+Warning: Circular import dependency detected
+Warning: WSDL style is 'rpc/encoded'. Use 'document/literal' instead
+Warning: Part element uses 'type' attribute instead of 'element'
+Warning: Schema targetNamespace does not match WSDL targetNamespace
+Warning: Multiple portType definitions found
+Warning: Binding lacks SOAP action specification
+Warning: Service contains multiple port definitions
+Warning: Fault message does not extend standard fault schema
+Warning: Operation timeout not specified in policy
+Warning: Retry policy not defined for transient failures
+Warning: Circuit breaker pattern not implemented
+Warning: Missing correlation ID header specification
+Warning: Idempotency key not required for POST operations
+Warning: Rate limiting policy not attached
+Warning: API versioning strategy not evident from endpoint URL
+Warning: Deprecated operation 'legacyProcess' still exposed
+Warning: Missing input validation schema constraints
+Warning: Output message may contain unbounded arrays
+Warning: Date format not ISO 8601 compliant
+Warning: Timestamp lacks timezone information
+Warning: Currency codes not ISO 4217 compliant
+Warning: Country codes not ISO 3166 compliant
+Warning: Language codes not BCP 47 compliant
+Warning: Phone numbers not E.164 compliant
+Warning: Email format validation insufficient
+Warning: Password field transmitted without encryption notice
+Warning: PII data detected without classification marker
+Warning: GDPR consent field not present in customer operations
+Warning: Audit trail fields not included in message structure
+Warning: Archival policy metadata missing
+Warning: Data retention period not specified
+Warning: Cross-border data transfer implications not documented
+Warning: Multi-tenancy isolation not evident
+Warning: Locale-specific formatting not parameterized
+Warning: Character encoding not explicitly specified (assuming UTF-8)
+Warning: Binary data encoding method ambiguous
+Warning: Attachment handling mechanism not specified
+Warning: Large message handling strategy not defined
+Warning: Streaming not enabled for bulk operations
+Warning: Compression not enabled for large payloads
+Warning: Caching directives not present
+Warning: ETag support not implemented
+Warning: Conditional request headers not supported
+Warning: CORS policy not defined
+Warning: Preflight request handling not specified
+Warning: Authentication mechanism not OAUTH 2.0
+Warning: Token refresh strategy not documented
+Warning: Session timeout policy not specified
+Warning: Concurrent session limit not defined
+Warning: Privilege escalation controls not evident
+Warning: Role-based access control not granular enough
+Warning: Attribute-based access control not implemented
+Warning: Data masking policy not defined for sensitive fields
+Warning: Encryption at rest not confirmed
+Warning: Key rotation policy not documented
+Warning: Certificate expiration monitoring not configured
+Warning: Mutual TLS not enforced
+Warning: TLS version below 1.3
+Warning: Cipher suite includes deprecated algorithms
+Warning: Perfect forward secrecy not guaranteed
+Warning: HSTS header not specified
+Warning: Content Security Policy not defined
+Warning: X-Frame-Options header missing
+Warning: X-Content-Type-Options header missing
+Warning: Referrer policy not specified
+Warning: Feature policy not defined
+Warning: Subresource integrity not enforced
+Warning: DNS prefetch controls not specified
+Warning: Connection pooling parameters not tuned
+Warning: Thread pool sizing not optimized
+Warning: Memory allocation limits not specified
+Warning: CPU throttling policy not defined
+Warning: I/O bound operation detection not enabled
+Warning: Deadlock detection not configured
+Warning: Livelock prevention not implemented
+Warning: Race condition susceptibility not analyzed
+Warning: Eventual consistency implications not documented
+Warning: CAP theorem trade-offs not specified
+Warning: ACID compliance not confirmed for transactions
+Warning: Two-phase commit timeout not configured
+Warning: Saga pattern compensation not defined
+Warning: Outbox pattern not implemented for reliability
+Warning: Change data capture not enabled
+Warning: Event sourcing strategy not documented
+Warning: CQRS separation not evident
+Warning: Read replica routing not configured
+Warning: Sharding strategy not defined
+Warning: Partition tolerance not tested
+Warning: Failover mechanism not documented
+Warning: Disaster recovery RTO/RPO not specified
+Warning: Backup verification process not defined
+Warning: Restore testing schedule not documented
+Warning: Business continuity plan not linked
+Warning: Incident response procedure not referenced
+Warning: Runbook not attached for operational support
+Warning: SRE golden signals not monitored
+Warning: Distributed tracing not enabled
+Warning: Correlation ID propagation not verified
+Warning: Log aggregation endpoint not specified
+Warning: Metric collection interval not optimized
+Warning: Alert threshold not calibrated
+Warning: Escalation policy not defined
+Warning: On-call rotation not documented
+Warning: Service catalog entry not created
+Warning: CMDB record not linked
+Warning: Change management process not referenced
+Warning: CAB approval not evident
+Warning: Release management process not followed
+Warning: Deployment pipeline not automated
+Warning: Canary deployment not configured
+Warning: Blue-green deployment not enabled
+Warning: Feature flag management not implemented
+Warning: A/B testing framework not integrated
+Warning: Performance baseline not established
+Warning: Capacity planning model not documented
+Warning: Scalability testing not performed
+Warning: Load testing results not attached
+Warning: Stress testing report not available
+Warning: Chaos engineering experiments not conducted
+Warning: Game day exercises not scheduled
+Warning: Documentation last updated in 2011
+Warning: Architecture Decision Record not created
+Warning: Technical debt not quantified
+Warning: Code review not evident
+Warning: Security review not completed
+Warning: Privacy impact assessment not filed
+Warning: Accessibility compliance not verified
+Warning: Localization testing not performed
+Warning: Globalization readiness not assessed
+Warning: Enterprise Architecture Review Board approval pending since 2014
+Warning: Total warnings: 147. Errors: 0. Service technically compliant but spiritually deficient.
+Warning: Enterprise integration requires form ARCH-7842 approval

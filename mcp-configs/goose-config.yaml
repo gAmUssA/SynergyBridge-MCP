@@ -1,0 +1,26 @@
+# Goose MCP Configuration for SynergyBridge MCP
+# "Bridging the gap between your legacy investments and tomorrow's legacy investments"
+#
+# Installation:
+#   Copy this file to ~/.config/goose/config.yaml
+#   Or merge the mcp_servers section into your existing config
+#
+# Enterprise Certification: Y2K Compliant, ISO 9001, CMMI Level 3
+
+mcp_servers:
+  synergybridge:
+    # Primary HTTP endpoint (Streamable HTTP transport)
+    url: "http://localhost:8080/mcp"
+    name: "SynergyBridge MCP"
+    description: "Enterprise Legacy System Integration Suite"
+    
+    # Optional: Enable SSE transport instead
+    # url: "http://localhost:8080/mcp/sse"
+    # transport: sse
+    
+    # Optional: Use HTTPS (requires accepting self-signed certificate)
+    # url: "https://localhost:8443/mcp"
+
+# Alternative configuration using environment variables:
+# export GOOSE_MCP_SERVERS__SYNERGYBRIDGE__URL="http://localhost:8080/mcp"
+# export GOOSE_MCP_SERVERS__SYNERGYBRIDGE__NAME="SynergyBridge MCP"

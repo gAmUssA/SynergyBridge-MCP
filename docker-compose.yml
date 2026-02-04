@@ -1,0 +1,49 @@
+# SynergyBridge MCP - Docker Compose Configuration
+# "Bridging the gap between your legacy investments and tomorrow's legacy investments"
+#
+# Usage:
+#   docker-compose up -d        # Start the server in detached mode
+#   docker-compose logs -f      # View logs
+#   docker-compose down         # Stop the server
+#
+# Enterprise Certification: Y2K Compliant, ISO 9001, CMMI Level 3
+
+services:
+  synergybridge-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: synergybridge-mcp:latest
+    container_name: synergybridge-mcp
+    ports:
+      # HTTP endpoint for MCP communication
+      - "8080:8080"
+      # HTTPS endpoint for enterprise-grade secure connections
+      - "8443:8443"
+    environment:
+      # Java options for enterprise performance tuning
+      - JAVA_OPTS=-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Xms256m -Xmx512m
+      # Disable banner in production (optional - enable for nostalgia)
+      # - QUARKUS_BANNER_ENABLED=false
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/q/health/ready"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+    labels:
+      - "com.synergybridge.description=Enterprise Legacy System Integration MCP Server"
+      - "com.synergybridge.version=9.0.0.1-SP3-HF42-FINAL-FINAL2-REALLYFINAL"
+      - "com.synergybridge.certifications=ISO 9001, CMMI Level 3, Y2K Compliant"
+
+# Network configuration for enterprise integration
+networks:
+  default:
+    name: synergybridge-network
+    driver: bridge
+
+# Volume configuration (optional - for persistent logging)
+# volumes:
+#   synergybridge-logs:
+#     driver: local

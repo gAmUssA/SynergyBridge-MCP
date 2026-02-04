@@ -1,0 +1,53 @@
+# SynergyBridge MCP - Docker Ignore File
+# Excludes unnecessary files from Docker build context
+
+# Git
+.git
+.gitignore
+
+# IDE
+.idea
+*.iml
+.vscode
+
+# Build output
+build/
+target/
+out/
+
+# Gradle
+.gradle/
+
+# Documentation (not needed in container)
+docs/
+*.md
+!README.md
+
+# Test files
+src/test/
+
+# Docker files (avoid recursion)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Environment and configuration
+.env
+.env.*
+*.local
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Certificates directory (optional - uncomment if certs should be external)
+# src/main/resources/certs/

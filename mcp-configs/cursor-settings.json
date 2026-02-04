@@ -1,0 +1,25 @@
+{
+  "_comment": "Cursor IDE MCP Configuration for SynergyBridge MCP",
+  "_description": "Bridging the gap between your legacy investments and tomorrow's legacy investments",
+  "_certification": "Y2K Compliant, ISO 9001, CMMI Level 3",
+  
+  "mcp": {
+    "servers": {
+      "synergybridge": {
+        "url": "http://localhost:8080/mcp",
+        "name": "SynergyBridge MCP",
+        "description": "Enterprise Legacy System Integration Suite",
+        "enabled": true
+      }
+    }
+  },
+  
+  "_installation_notes": {
+    "step_1": "Open Cursor Settings (Cmd/Ctrl + ,)",
+    "step_2": "Navigate to Features > MCP",
+    "step_3": "Click 'Add MCP Server'",
+    "step_4": "Enter URL: http://localhost:8080/mcp",
+    "step_5": "Enter Name: SynergyBridge MCP",
+    "step_6": "Click Save and enjoy the enterprise experience"
+  }
+}

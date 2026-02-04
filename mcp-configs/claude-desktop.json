@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-desktop/main/schemas/config.schema.json",
+  "_comment": "Claude Desktop MCP Configuration for SynergyBridge MCP",
+  "_description": "Bridging the gap between your legacy investments and tomorrow's legacy investments",
+  
+  "mcpServers": {
+    "synergybridge": {
+      "url": "http://localhost:8080/mcp",
+      "name": "SynergyBridge MCP",
+      "description": "Enterprise Legacy System Integration Suite - Y2K Compliant, ISO 9001 Certified"
+    }
+  }
+}
