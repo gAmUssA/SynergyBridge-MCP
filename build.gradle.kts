@@ -24,9 +24,9 @@ dependencies {
     implementation("io.quarkus:quarkus-vertx-http")
     
     // Quarkus MCP Server transport
-    // SSE transport - provides both Streamable HTTP (/mcp) and HTTP/SSE (/mcp/sse) endpoints
+    // HTTP transport - provides both Streamable HTTP (/mcp) and HTTP/SSE (/mcp/sse) endpoints
     // Note: Use quarkus-mcp-server-stdio instead if you need STDIO transport for CLI integration
-    implementation("io.quarkiverse.mcp:quarkus-mcp-server-sse:${quarkusMcpServerVersion}")
+    implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:${quarkusMcpServerVersion}")
     
     // Testing dependencies
     testImplementation("io.quarkus:quarkus-junit5")
