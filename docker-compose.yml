@@ -18,15 +18,13 @@ services:
     ports:
       # HTTP endpoint for MCP communication
       - "8080:8080"
-      # HTTPS endpoint for enterprise-grade secure connections
-      - "8443:8443"
     environment:
       # Java options for enterprise performance tuning
       - JAVA_OPTS=-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Xms256m -Xmx512m
       # Disable banner in production (optional - enable for nostalgia)
       # - QUARKUS_BANNER_ENABLED=false
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/q/health/ready"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
       interval: 30s
       timeout: 10s
       retries: 3

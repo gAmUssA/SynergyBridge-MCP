@@ -18,21 +18,26 @@ repositories {
 
 dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
-    
+
     // Quarkus core dependencies
     implementation("io.quarkus:quarkus-arc")
     implementation("io.quarkus:quarkus-vertx-http")
-    
+
     // Quarkus MCP Server transport
     // HTTP transport - provides both Streamable HTTP (/mcp) and HTTP/SSE (/mcp/sse) endpoints
     // Note: Use quarkus-mcp-server-stdio instead if you need STDIO transport for CLI integration
     implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:${quarkusMcpServerVersion}")
-    
+
     // Testing dependencies
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("io.rest-assured:rest-assured")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    // Testcontainers
+    testImplementation("org.testcontainers:testcontainers:1.20.4")
+    testImplementation("org.testcontainers:junit-jupiter:1.20.4")
 }
 
 java {
@@ -46,6 +51,15 @@ tasks.withType<JavaCompile> {
 }
 
 tasks.test {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        excludeTags("container")
+    }
+    systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
+}
+
+tasks.register<Test>("containerTest") {
+    useJUnitPlatform {
+        includeTags("container")
+    }
     systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
 }

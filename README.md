@@ -7,6 +7,7 @@
 ![Java 21](https://img.shields.io/badge/Java-21-brightgreen)
 ![Quarkus 3.31.2](https://img.shields.io/badge/Quarkus-3.31.2-blue)
 ![IBM Semeru](https://img.shields.io/badge/IBM_Semeru-OpenJ9-blueviolet)
+![CI](https://github.com/gAmUssA/SynergyBridge-MCP/actions/workflows/ci.yml/badge.svg)
 
 > **Bridging the gap between your legacy investments and tomorrow's legacy investments.**
 
