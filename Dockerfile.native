@@ -1,0 +1,82 @@
+# SynergyBridge MCP - Native Image Docker Build
+# "Bridging the gap between your legacy investments and tomorrow's legacy investments"
+#
+# Build instructions:
+#   docker build -f Dockerfile.native -t synergybridge-mcp:native .
+#
+# This produces a small, fast-starting container using GraalVM native compilation.
+# Startup time: ~50ms (vs ~1.5s for JVM mode)
+
+# ==============================================================================
+# Stage 1: Build the native executable with GraalVM
+# ==============================================================================
+FROM ghcr.io/graalvm/graalvm-community:21 AS build
+
+# Install native-image and required tools
+RUN gu install native-image
+
+WORKDIR /app
+
+# Copy Gradle wrapper and configuration
+COPY gradlew gradlew
+COPY gradle gradle
+COPY build.gradle.kts settings.gradle.kts gradle.properties ./
+
+# Make gradlew executable
+RUN chmod +x gradlew
+
+# Download dependencies (cached layer)
+RUN ./gradlew dependencies --no-daemon
+
+# Copy source code
+COPY src src
+
+# Build native executable
+# Note: This takes significant time and memory (~7GB RAM recommended)
+RUN ./gradlew build \
+    -Dquarkus.native.enabled=true \
+    -Dquarkus.package.jar.enabled=false \
+    -Dquarkus.native.additional-build-args="-H:+ReportExceptionStackTraces" \
+    --no-daemon
+
+# ==============================================================================
+# Stage 2: Create minimal runtime image
+# ==============================================================================
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10
+
+# Labels for enterprise compliance documentation
+LABEL maintainer="SynergyBridge Enterprise Solutions Division"
+LABEL org.opencontainers.image.title="SynergyBridge MCP (Native)"
+LABEL org.opencontainers.image.description="Enterprise Legacy System Integration MCP Server - Native Image"
+LABEL org.opencontainers.image.version="9.0.0.1-SP3-HF42-FINAL-FINAL2-REALLYFINAL"
+LABEL org.opencontainers.image.vendor="SynergyBridge Enterprise Solutions Division"
+LABEL com.synergybridge.certifications="ISO 9001, CMMI Level 3, Y2K Compliant"
+LABEL com.synergybridge.build="native"
+
+# Install minimal required packages (curl for healthcheck)
+RUN microdnf install -y libstdc++ zlib curl-minimal && \
+    microdnf clean all
+
+WORKDIR /app
+
+# Copy the native executable from build stage
+COPY --from=build /app/build/*-runner /app/synergybridge-mcp
+
+# Create non-root user for security
+RUN chown 1001:1001 /app/synergybridge-mcp && \
+    chmod +x /app/synergybridge-mcp
+
+USER 1001
+
+# Expose HTTP port
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8080/ || exit 1
+
+# Environment variables
+ENV QUARKUS_HTTP_HOST=0.0.0.0
+
+# Run the native executable
+CMD ["./synergybridge-mcp"]
