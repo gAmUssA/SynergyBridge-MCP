@@ -41,7 +41,8 @@ RUN ./gradlew build \
 # ==============================================================================
 # Stage 2: Create minimal runtime image
 # ==============================================================================
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10
+# Using UBI 9 for GLIBC 2.34 compatibility with GraalVM 21
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.4
 
 # Labels for enterprise compliance documentation
 LABEL maintainer="SynergyBridge Enterprise Solutions Division"
