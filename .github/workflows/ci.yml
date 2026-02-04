@@ -93,4 +93,4 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build native image
-        run: ./gradlew build -Dquarkus.native.enabled=true -Dquarkus.native.container-build=true
+        run: ./gradlew build -Dquarkus.native.enabled=true -Dquarkus.native.container-build=true -Dquarkus.package.jar.enabled=false
