@@ -32,15 +32,17 @@ jobs:
       - name: Start container
         run: |
           docker run -d --name synergybridge -p 8080:8080 synergybridge-mcp:ci
-          # Wait for the server to be ready
+          # Wait for the health endpoint to be ready
           for i in $(seq 1 30); do
             if curl -sf http://localhost:8080/ > /dev/null 2>&1; then
-              echo "Server is ready"
+              echo "Health endpoint is ready"
               break
             fi
             echo "Waiting for server... ($i/30)"
             sleep 2
           done
+          # Give MCP endpoint time to fully initialize
+          sleep 3
 
       - name: "Smoke test: GET /"
         run: |
