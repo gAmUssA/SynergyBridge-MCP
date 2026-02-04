@@ -14,7 +14,7 @@
 # ==============================================================================
 # Stage 1: Build the application with Gradle
 # ==============================================================================
-FROM eclipse-temurin:21-jdk AS build
+FROM ibm-semeru-runtimes:open-21-jdk AS build
 
 # Install Gradle dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -41,9 +41,9 @@ COPY src src
 RUN ./gradlew build -x test --no-daemon
 
 # ==============================================================================
-# Stage 2: Create the runtime image
+# Stage 2: Create the runtime image (IBM Semeru / Eclipse OpenJ9)
 # ==============================================================================
-FROM eclipse-temurin:21-jre
+FROM ibm-semeru-runtimes:open-21-jre
 
 # Labels for enterprise compliance documentation
 LABEL maintainer="SynergyBridge Enterprise Solutions Division"
@@ -70,19 +70,17 @@ RUN chown -R synergybridge:synergybridge /app
 # Switch to non-root user
 USER synergybridge
 
-# Expose HTTP and HTTPS ports
-# HTTP: 8080 - For development and internal communication
-# HTTPS: 8443 - For enterprise-grade secure connections
-EXPOSE 8080 8443
+# Expose HTTP port
+EXPOSE 8080
 
 # Environment variables for enterprise configuration
 ENV JAVA_OPTS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 ENV AB_JOLOKIA_OFF=""
 ENV JAVA_APP_JAR="/app/quarkus-run.jar"
 
-# Health check for container orchestration
+# Health check for container orchestration (uses root info endpoint)
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD curl -f http://localhost:8080/q/health/ready || exit 1
+    CMD curl -f http://localhost:8080/ || exit 1
 
 # Start the SynergyBridge MCP Server
 # Note: Startup time may vary. This is by design - enterprise systems require patience.
