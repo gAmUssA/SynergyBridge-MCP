@@ -51,8 +51,9 @@ jobs:
 
       - name: "Smoke test: POST /mcp (initialize)"
         run: |
-          response=$(curl -sf -X POST http://localhost:8080/mcp \
+          response=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST http://localhost:8080/mcp \
             -H 'Content-Type: application/json' \
+            -H 'Accept: application/json, text/event-stream' \
             -d '{
               "jsonrpc": "2.0",
               "id": 1,
@@ -63,8 +64,13 @@ jobs:
                 "clientInfo": { "name": "ci-smoke-test", "version": "1.0.0" }
               }
             }')
-          echo "$response" | jq .
-          echo "$response" | jq -e '.result.protocolVersion' > /dev/null
+          echo "Raw response:"
+          echo "$response"
+          http_code=$(echo "$response" | grep "HTTP_CODE:" | cut -d: -f2)
+          json_response=$(echo "$response" | grep -v "HTTP_CODE:")
+          echo "JSON response:"
+          echo "$json_response" | jq . || echo "Failed to parse JSON"
+          echo "$json_response" | jq -e '.result.protocolVersion' > /dev/null
 
       - name: Tear down container
         if: always()
